@@ -1,15 +1,17 @@
 import React from 'react';
-import './App.css';
-import ProductForm from './Components/ProductForm';
+import {Router} from '@reach/router';
+import Main from './Views/Main';
+import Detail from './Views/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-// lskfdgadfg
 
 function App() {
   return (
     <div className="App">
-      <ProductForm/>
+      <Router>
+        <Main path='/products'/>
+        <Detail path='products/:id'/>
+      </Router>
+
     </div>
   );
 }

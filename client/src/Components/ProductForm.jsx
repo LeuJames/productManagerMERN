@@ -1,20 +1,18 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { PromiseProvider } from 'mongoose';
 
-const ProductForm = () => {
+const ProductForm = (props) => {
   const [title, setTitle] = useState('');
-  const[price, setPrice] = useState();
+  const[price, setPrice] = useState('');
   const[desc, setDesc] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/api/product', {
-      title,
-      price,
-      desc
-    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    props.submit( title, price, desc);
+    setTitle('');
+    setPrice('');
+    setDesc('');
   }
   
   return(
@@ -23,15 +21,15 @@ const ProductForm = () => {
       <form onSubmit={handleSubmit}>
         <p>
           Product Title:&nbsp;
-          <input type="text" onChange = { (e) => setTitle(e.target.value)}/>
+          <input type="text" value = {title} onChange = { (e) => setTitle(e.target.value)}/>
         </p>
         <p>
-          Price:&nbsp;
-          <input type="number" onChange = { (e) => setPrice(e.target.value)}/>
+          Price:&nbsp; $
+          <input value = {price} type="number" step="any" onChange = { (e) => setPrice(e.target.value)}/>
         </p>
         <p>
           Product Description:&nbsp;
-          <input type="text" onChange = { (e) => setDesc(e.target.value)}/>
+          <input value = {desc} type="text" onChange = { (e) => setDesc(e.target.value)}/>
         </p>
         <input type="submit"/>
       </form>
