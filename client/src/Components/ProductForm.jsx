@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import axios from 'axios';
-import { PromiseProvider } from 'mongoose';
 
 const ProductForm = (props) => {
   const [title, setTitle] = useState('');
@@ -16,7 +14,7 @@ const ProductForm = (props) => {
   }
   
   return(
-    <div>
+    <div className='jumbotron'>
       <h1>Enter Product Details</h1>
       <form onSubmit={handleSubmit}>
         <p>
